@@ -1,0 +1,42 @@
+body{
+    margin: 0%;
+}
+h2{
+    text-align: center;
+}
+#grade{
+    width: 450px;
+    height: 450px;
+    border: 1px solid black;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: blueviolet;
+}
+div{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    background-color: aqua;
+}
+.jogador{
+    background: url(img/xwing.png) no-repeat;
+    background-size: contain;
+}
+.invasor{
+    background: url(img/tiefighter.png) no-repeat;
+    background-size: contain;
+}
+.tiro::after{
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: red;
+    position: absolute;
+    right: 10px;
+}
+.kabum{
+    background: url(img/kabum.png) no-repeat;
+    background-size: contain;
+}
