@@ -53,17 +53,17 @@ function moverInvasores(){
         quadrados[invasor].classList.remove("invasor");
     });
     if(bordaEsquerda && direcao ==-1){
-        direcao=1;
-        descer= true;
+        direcao = 1;
+        descer = true;
     }else if(bordaDireita && direcao ==1){
-        direcao=-1;
-        descer=true;
+        direcao =- 1;
+        descer = true;
     }
     for(let i=0; i< invasores.length; i++){
         invasores[i] += descer ? tamanho : direcao;
-    }
-
-    descer=false;
+    }  
+     
+    descer = false;
 
     invasores.forEach((invasor,indice) => {
         if(!atingidos.includes(indice)){
