@@ -22,7 +22,7 @@ let pontos = 0;
 
 quadrados[posicaoJogador].classList.add("jogador");
 
-invasores.forEach(invasor =>{
+invasores.forEach(invasor => {
     quadrados[invasor].classList.add("invasor");
 });
 
