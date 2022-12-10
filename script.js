@@ -1,11 +1,14 @@
 const grade = document.getElementById("grade");
 const pontuacao = document.getElementById("pontuacao");
+const start = document.getElementById("start");
 
-for (let i = 0; i < 255; i++){
+for (let i = 0; i < 210; i++){
     let quadrado = document.createElement("div");
     grade.appendChild(quadrado);
 }
+
 const quadrados = document.querySelectorAll("#grade div");
+
 const invasores = [
     0,1,2,3,4,5,6,7,8,9,
     15,16,17,18,19,20,21,22,23,24,
@@ -118,4 +121,3 @@ function atirar(e){
         }
     }
 }   
-
