@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/atari');
+
 body{
     margin: 0;
     background-color: black;
@@ -5,10 +7,18 @@ body{
 h1{
     color: #FFE81F;
     text-align: center;
+    font-family: 'Atari', sans-serif;
 }
 h2{
     text-align: center;
     color:  #10D1FF;
+    font-family: 'Atari', sans-serif;
+}
+h3{
+    color: white;
+    font-family: 'Atari', sans-serif;
+    text-align: center;
+    animation: blink 1s infinite;
 }
 #grade{
     width: 450px;
@@ -19,7 +29,6 @@ h2{
     flex-wrap: wrap;
     background: url(img/fundo.jpeg);
 }
-
 div{
     width: 30px;
     height: 30px;
@@ -49,4 +58,8 @@ div{
 }
 #pontuacao{
     color: #10D1FF;
+}
+@keyframes blink {
+    50%{color: black;}
+    100%{color: white;}
 }

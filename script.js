@@ -1,5 +1,11 @@
 const grade = document.getElementById("grade");
 const pontuacao = document.getElementById("pontuacao");
+//sons
+const blaster = new Audio();
+const explosao = new Audio();
+
+blaster.src ="./song/blaster.mp3"
+explosao.src="./song/explosao.mp3"
 
 for (let i = 0; i < 210; i++){
     let quadrado = document.createElement("div");
@@ -24,17 +30,15 @@ let pontos = 0;
 
 //chamadas de funcoes
 document.addEventListener('keyup', startGame);
+quadrados[posicaoJogador].classList.add("jogador"); //aparece jogagor
+    invasores.forEach(invasor => {
+        quadrados[invasor].classList.add("invasor"); //aparece inimigos
+        }); 
 
 //funcoes
 function startGame(e){
     
    if(e.keyCode == 13){
-
-    quadrados[posicaoJogador].classList.add("jogador"); //aparece jogagor
-    invasores.forEach(invasor => {
-        quadrados[invasor].classList.add("invasor"); //aparece inimigos
-        }); 
-
     document.addEventListener("keydown", moverJogador); 
     document.addEventListener("keyup",atirar);
     invasoresID = setInterval(moverInvasores, 400);
@@ -102,23 +106,25 @@ function moverInvasores(){
 function atirar(e){
     let tiroId;
     let posicaoTiro = posicaoJogador;
+    
 
     if(e.keyCode == 32){
         tiroId = setInterval(moverTiro, 100);
+        blaster.play();
     }
     function moverTiro(){
         quadrados[posicaoTiro].classList.remove("tiro");
         posicaoTiro -= tamanho;
         quadrados[posicaoTiro].classList.add("tiro");
-
+    
         if(quadrados[posicaoTiro].classList.contains("invasor")){
             quadrados[posicaoTiro].classList.remove("tiro");
             quadrados[posicaoTiro].classList.remove("invasor");
             quadrados[posicaoTiro].classList.add("kabum");
+            explosao.play();
 
             setTimeout(() => {
                 quadrados[posicaoTiro].classList.remove("kabum");
-
             },300);
 
             clearInterval(tiroId);
@@ -132,4 +138,4 @@ function atirar(e){
             quadrados[posicaoTiro].classList.remove("tiro");
         }
     }
-}   
+}
