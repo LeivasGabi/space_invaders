@@ -24,18 +24,21 @@ let pontos = 0;
 
 //chamadas de funcoes
 document.addEventListener('keyup', startGame);
-quadrados[posicaoJogador].classList.add("jogador");
-invasores.forEach(invasor => {
-quadrados[invasor].classList.add("invasor");
-}); 
 
 //funcoes
 function startGame(e){
     
    if(e.keyCode == 13){
+
+    quadrados[posicaoJogador].classList.add("jogador"); //aparece jogagor
+    invasores.forEach(invasor => {
+        quadrados[invasor].classList.add("invasor"); //aparece inimigos
+        }); 
+
     document.addEventListener("keydown", moverJogador); 
     document.addEventListener("keyup",atirar);
     invasoresID = setInterval(moverInvasores, 400);
+    document.removeEventListener('keyup', startGame);
    }
 }
 function moverJogador(e){
@@ -81,17 +84,20 @@ function moverInvasores(){
     if(invasores[invasores.length -1] > quadrados.length - tamanho){
         alert("Você perdeu!");
         clearInterval(invasoresID);
+        document.removeEventListener("keydown", moverJogador); 
+        document.removeEventListener("keyup",atirar);
     }
     if(quadrados[posicaoJogador].classList.contains("invasor")){
         alert("você perdeu!");
         quadrados[posicaoJogador].classList.add("kabum");
         clearInterval(invasoresID);
+        document.removeEventListener("keydown", moverJogador); 
+        document.removeEventListener("keyup",atirar);
     }
     if(atingidos.length == invasores.length){
         alert("Você venceu!");
         clearInterval(invasoresID);
     }
-    
 }
 function atirar(e){
     let tiroId;
