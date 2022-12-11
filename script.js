@@ -1,6 +1,5 @@
 const grade = document.getElementById("grade");
 const pontuacao = document.getElementById("pontuacao");
-const start = document.getElementById("start");
 
 for (let i = 0; i < 210; i++){
     let quadrado = document.createElement("div");
@@ -10,12 +9,12 @@ for (let i = 0; i < 210; i++){
 const quadrados = document.querySelectorAll("#grade div");
 
 const invasores = [
-    0,1,2,3,4,5,6,7,8,9,
+    0,1,2,3,4,5,6,7,8,9, 
     15,16,17,18,19,20,21,22,23,24,
     30,31,32,33,34,35,36,37,38,39
 ];
 
-let posicaoJogador = 202;
+let posicaoJogador = 202; 
 let tamanho = 15;
 let direcao = 1;
 let descer = false;
@@ -23,17 +22,22 @@ let invasoresID;
 let atingidos = [];
 let pontos = 0;
 
+//chamadas de funcoes
+document.addEventListener('keyup', startGame);
 quadrados[posicaoJogador].classList.add("jogador");
-
 invasores.forEach(invasor => {
-    quadrados[invasor].classList.add("invasor");
-});
-
-document.addEventListener("keydown", moverJogador);
-invasoresID = setInterval(moverInvasores, 300);
-document.addEventListener("keyup",atirar);
+quadrados[invasor].classList.add("invasor");
+}); 
 
 //funcoes
+function startGame(e){
+    
+   if(e.keyCode == 13){
+    document.addEventListener("keydown", moverJogador); 
+    document.addEventListener("keyup",atirar);
+    invasoresID = setInterval(moverInvasores, 400);
+   }
+}
 function moverJogador(e){
     quadrados[posicaoJogador].classList.remove("jogador");
 
@@ -41,7 +45,8 @@ function moverJogador(e){
         if(posicaoJogador % tamanho != 0){
             posicaoJogador--;
         }
-    }else if (e.keyCode == 39){ //direita
+    }
+    if (e.keyCode == 39){ //direita
         if(posicaoJogador % tamanho != tamanho -1){
             posicaoJogador++;
         }
@@ -65,7 +70,7 @@ function moverInvasores(){
     for(let i=0; i< invasores.length; i++){
         invasores[i] += descer ? tamanho : direcao;
     }  
-     
+
     descer = false;
 
     invasores.forEach((invasor,indice) => {
@@ -86,6 +91,7 @@ function moverInvasores(){
         alert("Você venceu!");
         clearInterval(invasoresID);
     }
+    
 }
 function atirar(e){
     let tiroId;
